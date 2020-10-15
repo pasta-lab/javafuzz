@@ -1,6 +1,6 @@
-package dev.fuzzit.javafuzz.examples;
+package com.gitlab.javafuzz.examples;
 
-import dev.fuzzit.javafuzz.core.AbstractFuzzTarget;
+import com.gitlab.javafuzz.core.AbstractFuzzTarget;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.error.YAMLException;
 

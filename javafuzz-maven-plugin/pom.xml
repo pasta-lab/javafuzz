@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>dev.fuzzit.javafuzz</groupId>
+  <groupId>com.gitlab.javafuzz</groupId>
   <artifactId>javafuzz-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>javafuzz-maven-plugin Maven Mojo</name>
   <description>JavaFuzz Maven Plugin: Coverage Guided Maven Plugin</description>
   <parent>
-    <groupId>dev.fuzzit.javafuzz</groupId>
+    <groupId>com.gitlab.javafuzz</groupId>
     <artifactId>javafuzz</artifactId>
     <version>1.23-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
@@ -40,7 +40,7 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>dev.fuzzit.javafuzz</groupId>
+      <groupId>com.gitlab.javafuzz</groupId>
       <artifactId>core</artifactId>
       <version>1.23-SNAPSHOT</version>
       <scope>compile</scope>

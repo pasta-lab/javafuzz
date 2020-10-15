@@ -1,6 +1,6 @@
-package dev.fuzzit.javafuzz.examples;
+package com.gitlab.javafuzz.examples;
 
-import dev.fuzzit.javafuzz.core.AbstractFuzzTarget;
+import com.gitlab.javafuzz.core.AbstractFuzzTarget;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package dev.fuzzit.javafuzz.core;
+package com.gitlab.javafuzz.core;
 
 import static org.junit.Assert.assertTrue;
 

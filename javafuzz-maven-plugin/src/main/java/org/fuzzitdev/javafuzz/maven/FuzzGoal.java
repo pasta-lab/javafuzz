@@ -1,4 +1,4 @@
-package org.fuzzitdev.javafuzz.maven;
+package com.gitlab.javafuzz.maven;
 
 
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
@@ -8,8 +8,8 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
-import dev.fuzzit.javafuzz.core.AbstractFuzzTarget;
-import dev.fuzzit.javafuzz.core.Fuzzer;
+import com.gitlab.javafuzz.core.AbstractFuzzTarget;
+import com.gitlab.javafuzz.core.Fuzzer;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;

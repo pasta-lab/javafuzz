@@ -4,12 +4,12 @@
 
     <name>javafuzz</name>
     <description>Javafuzz - Coverage Guided Fuzzing for Java</description>
-    <url>https://github.com/fuzzitdev/javafuzz</url>
+    <url>https://gitlab.com/gitlab-org/security-products/analyzers/fuzzers/javafuzz/</url>
     <developers>
         <developer>
-            <name>Yevgeny Pats</name>
-            <email>yp@fuzzit.dev</email>
-            <url>https://fuzzit.dev</url>
+            <name>GitLab</name>
+            <email>ypats@gitlab.com</email>
+            <url>https://gitlab.com</url>
         </developer>
     </developers>
     <licenses>
@@ -25,7 +25,7 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
-    <groupId>dev.fuzzit.javafuzz</groupId>
+    <groupId>com.gitlab.javafuzz</groupId>
     <artifactId>javafuzz</artifactId>
     <packaging>pom</packaging>
     <version>1.23-SNAPSHOT</version>
@@ -35,21 +35,25 @@
         <module>examples</module>
     </modules>
     <scm>
-        <connection>scm:git:git@github.com:fuzzitdev/javafuzz.git</connection>
-<!--        <developerConnection>scm:git:ssh://git@github.com:fuzzitdev/javafuzz.git</developerConnection>-->
-        <url>https://github.com/fuzzitdev/javafuzz</url>
+        <connection>scm:git:git@gitlab.com:gitlab-org/security-products/analyzers/fuzzers/javafuzz.git</connection>
+        <url>https://gitlab.com/gitlab-org/security-products/analyzers/fuzzers/javafuzz/</url>
       <tag>javafuzz-1.12</tag>
   </scm>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
+    <repositories>
         <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.com/api/v4/projects/19871573/packages/maven</url>
         </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.com/api/v4/projects/19871573/packages/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.com/api/v4/projects/19871573/packages/maven</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <profiles>
@@ -70,17 +74,6 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>1.6.7</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <serverId>ossrh</serverId>
-                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                    </configuration>
                 </plugin>
             </plugins>
     </build>

@@ -1,6 +1,6 @@
-package dev.fuzzit.javafuzz.examples;
+package com.gitlab.javafuzz.examples;
 
-import dev.fuzzit.javafuzz.core.AbstractFuzzTarget;
+import com.gitlab.javafuzz.core.AbstractFuzzTarget;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;

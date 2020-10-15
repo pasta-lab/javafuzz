@@ -67,8 +67,8 @@ The next step is to javafuzz with your fuzz target function
 
 
 ```bash
-docker run -it maven:3.6.2-jdk-11 /bin/bash
-git clone https://github.com/fuzzitdev/javafuzz.git
+docker run -it maven:3.6.3-jdk-11 /bin/bash
+git clone https://gitlab.com/gitlab-org/security-products/analyzers/fuzzers/javafuzz.git
 cd javafuzz
 mvn install
 cd examples
