@@ -28,16 +28,15 @@
     <groupId>com.gitlab.javafuzz</groupId>
     <artifactId>javafuzz</artifactId>
     <packaging>pom</packaging>
-    <version>1.23-SNAPSHOT</version>
+    <version>1.23</version>
     <modules>
         <module>javafuzz-maven-plugin</module>
         <module>core</module>
-        <module>examples</module>
     </modules>
     <scm>
         <connection>scm:git:git@gitlab.com:gitlab-org/security-products/analyzers/fuzzers/javafuzz.git</connection>
         <url>https://gitlab.com/gitlab-org/security-products/analyzers/fuzzers/javafuzz/</url>
-      <tag>javafuzz-1.12</tag>
+      <tag>javafuzz-1.23</tag>
   </scm>
     <repositories>
         <repository>

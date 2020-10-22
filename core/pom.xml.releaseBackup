@@ -4,10 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.gitlab.javafuzz</groupId>
-  <artifactId>examples</artifactId>
+  <artifactId>core</artifactId>
 
-  <name>examples</name>
-  <description>JavaFuzz Examples: Coverage Guided examples</description>
+  <name>core</name>
+
   <parent>
     <groupId>com.gitlab.javafuzz</groupId>
     <artifactId>javafuzz</artifactId>
@@ -21,17 +21,6 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.gitlab.javafuzz</groupId>
-      <artifactId>core</artifactId>
-      <version>1.23-SNAPSHOT</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.yaml</groupId>
-      <artifactId>snakeyaml</artifactId>
-      <version>1.25</version>
     </dependency>
   </dependencies>
 
@@ -76,11 +65,6 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
-        </plugin>
-        <plugin>
-          <groupId>com.gitlab.javafuzz</groupId>
-          <artifactId>javafuzz-maven-plugin</artifactId>
-          <version>1.23-SNAPSHOT</version>
         </plugin>
       </plugins>
     </pluginManagement>
