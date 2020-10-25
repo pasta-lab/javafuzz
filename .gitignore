@@ -1,5 +1,8 @@
 .idea
+settings.xml
 target
 release.properties
 crash-*
 jacoco.exec
+pom.xml.releaseBackup
+.settings

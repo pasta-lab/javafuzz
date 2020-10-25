@@ -44,20 +44,50 @@ Add this to your `pom.xml`
 ```yaml
   <dependencies>
     <dependency>
-      <groupId>dev.fuzzit.javafuzz</groupId>
-      <artifactId>core</artifactId>
-      <version>1.23-SNAPSHOT</version>
-      <scope>test</scope>
-    </dependency>
+      <groupId>com.gitlab.javafuzz</groupId>
+      <artifactId>javafuzz-maven-plugin</artifactId>
+      <version>1.24</version>
+    </dependency>    
   </dependencies>
 
-<plugin>
+  <build>
+    <pluginManagement>
+      <plugins>
         <plugin>
-          <groupId>dev.fuzzit.javafuzz</groupId>
+          <groupId>com.gitlab.javafuzz</groupId>
           <artifactId>javafuzz-maven-plugin</artifactId>
-          <version>1.22</version>
+          <version>1.24</version>
         </plugin>
-</plugins>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+
+<repositories>
+  <repository>
+    <id>gitlab-maven</id>
+    <url>https://gitlab.com/api/v4/projects/19871573/packages/maven</url>
+  </repository>
+</repositories>
+
+<pluginRepositories>
+  <pluginRepository>
+    <id>gitlab-maven</id>
+    <url>https://gitlab.com/api/v4/projects/19871573/packages/maven</url>
+  </pluginRepository>
+</pluginRepositories>
+
+<distributionManagement>
+  <repository>
+    <id>gitlab-maven</id>
+    <url>https://gitlab.com/api/v4/projects/19871573/packages/maven</url>
+  </repository>
+
+  <snapshotRepository>
+    <id>gitlab-maven</id>
+    <url>https://gitlab.com/api/v4/projects/19871573/packages/maven</url>
+  </snapshotRepository>
+</distributionManagement>
 ```
 
 
@@ -68,36 +98,40 @@ The next step is to javafuzz with your fuzz target function
 
 ```bash
 docker run -it maven:3.6.3-jdk-11 /bin/bash
-git clone https://gitlab.com/gitlab-org/security-products/analyzers/fuzzers/javafuzz.git
+git clone https://gitlab.com/gitlab-org/security-products/demos/coverage-fuzzing/javafuzz-fuzzing-example
 cd javafuzz
 mvn install
 cd examples
-wget -O jacocoagent.jar https://github.com/fuzzitdev/javafuzz/raw/master/javafuzz-maven-plugin/src/main/resources/jacocoagent-exp.jar
-MAVEN_OPTS="-javaagent:jacocoagent.jar" mvn javafuzz:fuzz -DclassName=dev.fuzzit.javafuzz.examples.FuzzYaml
+wget -O jacocoagent.jar https://gitlab.com/gitlab-org/security-products/analyzers/fuzzers/javafuzz/-/raw/master/javafuzz-maven-plugin/src/main/resources/jacocoagent-exp.jar
+MAVEN_OPTS="-javaagent:jacocoagent.jar" mvn javafuzz:fuzz -DclassName=com.gitlab.javafuzz.examples.FuzzParseComplex
 ```
 
 
 ```bash
-
-
+...
 # Output:
-#0 READ units: 0
-#1 NEW     cov: 61 corp: 0 exec/s: 1 rss: 23.37 MB
-#23320 PULSE     cov: 61 corp: 1 exec/s: 10614 rss: 35.3 MB
-#96022 NEW     cov: 70 corp: 1 exec/s: 11320 rss: 129.95 MB
-#96971 NEW     cov: 78 corp: 2 exec/s: 10784 rss: 129.95 MB
-#97046 NEW     cov: 79 corp: 3 exec/s: 9375 rss: 129.95 MB
-#97081 NEW     cov: 81 corp: 4 exec/s: 11666 rss: 129.95 MB
-#97195 NEW     cov: 93 corp: 5 exec/s: 9500 rss: 129.95 MB
-#97216 NEW     cov: 97 corp: 6 exec/s: 10500 rss: 129.95 MB
-#97238 NEW     cov: 102 corp: 7 exec/s: 11000 rss: 129.95 MB
-#97303 NEW     cov: 108 corp: 8 exec/s: 10833 rss: 129.96 MB
-#97857 PULSE     cov: 108 corp: 9 exec/s: 225 rss: 129.96 MB
-#97857 PULSE     cov: 108 corp: 9 exec/s: 0 rss: 940.97 MB
-#97857 PULSE     cov: 108 corp: 9 exec/s: 0 rss: 1566.01 MB
+#135 NEW     cov: 25419 corp: 118 exec/s: 0 rss: 62 MB
+#139 NEW     cov: 25421 corp: 119 exec/s: 0 rss: 62 MB
+#140 NEW     cov: 25432 corp: 120 exec/s: 0 rss: 62 MB
+#143 NEW     cov: 25433 corp: 121 exec/s: 0 rss: 62 MB
+#185 NEW     cov: 25434 corp: 122 exec/s: 0 rss: 62 MB
+#190 NEW     cov: 25435 corp: 123 exec/s: 0 rss: 62 MB
+#192 NEW     cov: 25437 corp: 124 exec/s: 0 rss: 62 MB
+#203 NEW     cov: 25438 corp: 125 exec/s: 0 rss: 63 MB
+#245 NEW     cov: 25439 corp: 126 exec/s: 1000 rss: 63 MB
+#293 NEW     cov: 25440 corp: 127 exec/s: 1000 rss: 63 MB
+#310 NEW     cov: 25441 corp: 128 exec/s: 2000 rss: 63 MB
+#4187 NEW     cov: 25442 corp: 129 exec/s: 2000 rss: 87 MB
+#13285 NEW     cov: 25443 corp: 130 exec/s: 4000 rss: 69 MB
+java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+	at com.gitlab.javafuzz.examples.App.parseComplex(App.java:11)
+	at com.gitlab.javafuzz.examples.FuzzParseComplex.fuzz(FuzzParseComplex.java:13)
+	at com.gitlab.javafuzz.core.Fuzzer.start(Fuzzer.java:72)
+	at com.gitlab.javafuzz.maven.FuzzGoal.execute(FuzzGoal.java:63)
+...
 ```
 
-This example quickly finds an infinite hang which takes all the memory in `jpeg-js`.
+This example quickly finds an out-of-bound-array in the parsecomplex example program.
 
 ### Corpus
 
@@ -109,7 +143,7 @@ may speed up the fuzzing substantially.
 
 Javafuzz tries to mimic some of the arguments and output style from [libFuzzer](https://llvm.org/docs/LibFuzzer.html).
 
-More fuzz targets examples (for real and popular libraries) are located under the examples directory and
+More fuzz targets examples (for real and popular libraries) are located under the [examples](https://gitlab.com/gitlab-org/security-products/demos/coverage-fuzzing/javafuzz-fuzzing-example/-/tree/master/src/test/java/com/gitlab/javafuzz/examples) directory and
 bugs that were found using those targets are listed in the trophies section.
 
 ### Coverage

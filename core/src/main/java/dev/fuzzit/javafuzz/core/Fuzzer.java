@@ -73,6 +73,7 @@ public class Fuzzer {
             } catch (Exception e) {
                 e.printStackTrace();
                 this.writeCrash(buf);
+                System.exit(1);
                 break;
             }
 
