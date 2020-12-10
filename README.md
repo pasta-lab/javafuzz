@@ -99,9 +99,8 @@ The next step is to javafuzz with your fuzz target function
 ```bash
 docker run -it maven:3.6.3-jdk-11 /bin/bash
 git clone https://gitlab.com/gitlab-org/security-products/demos/coverage-fuzzing/javafuzz-fuzzing-example
-cd javafuzz
+cd javafuzz-fuzzing-example
 mvn install
-cd examples
 wget -O jacocoagent.jar https://gitlab.com/gitlab-org/security-products/analyzers/fuzzers/javafuzz/-/raw/master/javafuzz-maven-plugin/src/main/resources/jacocoagent-exp.jar
 MAVEN_OPTS="-javaagent:jacocoagent.jar" mvn javafuzz:fuzz -DclassName=com.gitlab.javafuzz.examples.FuzzParseComplex
 ```
@@ -139,12 +138,13 @@ Javafuzz will generate and test various inputs in an infinite loop. `corpus` is 
 save the generated testcases so later runs can be started from the same point and provided as seed corpus.
 
 Javafuzz can also start with an empty directory (i.e no seed corpus) though some valid test-cases in the seed corpus
-may speed up the fuzzing substantially.  
+may speed up the fuzzing substantially. you can pass a seed directory via `-Ddirs=corpus_dir`
 
 Javafuzz tries to mimic some of the arguments and output style from [libFuzzer](https://llvm.org/docs/LibFuzzer.html).
 
 More fuzz targets examples (for real and popular libraries) are located under the [examples](https://gitlab.com/gitlab-org/security-products/demos/coverage-fuzzing/javafuzz-fuzzing-example/-/tree/master/src/test/java/com/gitlab/javafuzz/examples) directory and
 bugs that were found using those targets are listed in the trophies section.
+
 
 ### Coverage
 
